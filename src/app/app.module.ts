@@ -1,3 +1,4 @@
+import { HeroSearchComponent } from './hero-search.component.';
 import { HeroService } from './hero.service';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -23,7 +24,12 @@ import { HeroesComponent } from './heroes.component'
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
-  declarations: [AppComponent, HeroDetailComponent, HeroesComponent, DashboardComponent],
+  declarations: [
+      AppComponent, 
+      HeroDetailComponent, 
+      HeroesComponent, 
+      DashboardComponent,
+      HeroSearchComponent],
   providers : [HeroService],
   bootstrap: [AppComponent]
 })
