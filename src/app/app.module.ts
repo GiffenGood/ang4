@@ -1,3 +1,4 @@
+import { LoopbackComponent } from './loopback-component';
 import { HeroSearchComponent } from './hero-search.component.';
 import { HeroService } from './hero.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -29,7 +30,9 @@ import { HeroesComponent } from './heroes.component'
       HeroDetailComponent, 
       HeroesComponent, 
       DashboardComponent,
-      HeroSearchComponent],
+      HeroSearchComponent,
+      LoopbackComponent
+      ],
   providers : [HeroService],
   bootstrap: [AppComponent]
 })
