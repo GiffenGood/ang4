@@ -12,6 +12,7 @@ import { HeroService } from './hero.service';
   styleUrls: ['./hero-detail.component.css']
 })
 export class HeroDetailComponent implements OnInit {
+  alter : any;
   @Output() public deleteRequest = new EventEmitter<Hero>();
   @Input() hero: Hero = null;
   evilTitle = 'Template <script>alert("evil never sleeps")</script>Syntax';
@@ -41,7 +42,7 @@ export class HeroDetailComponent implements OnInit {
   }
 
   doDelete() {
-    console.log('before emit');
+    console.log('before emit', this.alter);
     this.deleteRequest.emit(this.hero);
   }
 

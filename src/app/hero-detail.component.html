@@ -2,7 +2,6 @@
     {{test}}
     <h1>Hero Form</h1>
     <form #heroForm="ngForm">
-        {{diagnostic}}
         <div class="form-group">
             <label for="name">Name</label>
             <input #name="ngModel" type="text" [(ngModel)]="hero.name" class="form-control" name="name" id="name" required>
@@ -12,7 +11,7 @@
         </div>
         <div class="form-group">
             <label for="alterEgo">Alter Ego</label>
-            <input type="text" class="form-control" id="alterEgo" [(ngModel)]="hero.alterEgo" name="alterEgo">
+            <input #alter type="text" class="form-control" id="alterEgo" [(ngModel)]="hero.alterEgo" name="alterEgo">
         </div>
         <div class="form-group">
             <label for="power">Hero Power</label>
