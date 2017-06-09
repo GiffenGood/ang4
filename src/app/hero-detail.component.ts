@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
@@ -8,22 +8,15 @@ import { HeroService } from './hero.service';
 
 @Component({
   selector: 'hero-detail',
-  template: `
-   <div *ngIf="hero">
-    <h2>{{hero.name}} details!</h2>
-    <div><label>id: </label>{{hero.id}}</div>
-    <div>
-      <label>name: </label>
-      <input [(ngModel)]="hero.name" placeholder="name"/>
-    </div>
-    <button (click)="save()">Save</button>
-    <button (click)="goBack()">Back</button>
-  </div>
-  `,
+  templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.css']
 })
 export class HeroDetailComponent implements OnInit {
-  hero: Hero;
+  @Output() public deleteRequest = new EventEmitter<Hero>();
+  @Input() hero: Hero = null;
+  evilTitle = 'Template <script>alert("evil never sleeps")</script>Syntax';
+  powers = ['Really Smart', 'Super Flexible',
+    'Super Hot', 'Weather Changer'];
 
   constructor(private heroService: HeroService,
     private route: ActivatedRoute,
@@ -33,7 +26,9 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params
       .switchMap((params: Params) => this.heroService.getHero(+params['id']))
-      .subscribe(hero => this.hero = hero);
+      .subscribe(hero => {
+        this.hero = hero;
+      });
   }
 
   goBack(): void {
@@ -44,4 +39,11 @@ export class HeroDetailComponent implements OnInit {
     this.heroService.update(this.hero)
       .then(() => this.goBack());
   }
+
+  doDelete() {
+    console.log('before emit');
+    this.deleteRequest.emit(this.hero);
+  }
+
+  get diagnostic() { return JSON.stringify(this.hero); }
 }

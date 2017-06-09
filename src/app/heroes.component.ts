@@ -47,6 +47,7 @@ export class HeroesComponent implements OnInit {
   }
 
   delete(hero: Hero): void {
+    console.log('in delete');
     this.heroService
       .delete(hero.id)
       .then(() => {
